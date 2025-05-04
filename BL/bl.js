@@ -5,7 +5,7 @@ const getAll = async (type) => {
   return await dal.getAll(type);
 };
 
-// לקבל מערך להשוואת נתונים עם מי ששלח אותם
+// לקבל מערך להשוואת נתונים עם מי ששלח אותם לעבור ולבדוק שכולם שולחים את הנתונים
 const getItemById = async (type, id, fieldToCheck = null, volueToCheck = null) => {
   const res = await dal.getItemsById(type, 'id', id);
   if (fieldToCheck) {
