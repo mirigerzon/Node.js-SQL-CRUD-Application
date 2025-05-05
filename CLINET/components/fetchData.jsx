@@ -1,7 +1,7 @@
 export const fetchData = async ({ type, params = {}, method = "GET", body = null, onSuccess, onError }) => {
     try {
         const query = method === "GET" ? `?${new URLSearchParams(params).toString()}` : "";
-        const url = `http://localhost:3000/${type}${query}`;
+        const url = `http://localhost:3001/${type}${query}`;
         const options = {
             method,
             headers: {

@@ -1,4 +1,5 @@
 // DAL/db.js
+const { log } = require('console');
 const { text } = require('express');
 const mysql = require('mysql2/promise');
 const path = require('path');
@@ -18,26 +19,28 @@ const GET = async (table, conditions = []) => {
   console.log(`i am in dal.GET func with table: ${table}`);
   const connection = await createConnection();
   let query = `SELECT * FROM ${table}`;
+  query+= ' WHERE is_active = 1';
   const values = [];
   if (conditions.length > 0) {
     const whereClauses = conditions.map(cond => {
       values.push(cond.value);
       return `${cond.field} = ?`;
     });
-    query += ` WHERE ${whereClauses.join(' AND ')}`;
+    query += ` AND ${whereClauses.join(' AND ')}`;
   }
   const [results] = await connection.query(query, values);
   await connection.end();
+
   return results;
 };
 
 const DELETE = async (table, conditions = []) => {
   const connection = await createConnection();
 
-  const whereClauses = conditions.map(c => `${c.field} = ?`);
+  const whereClauses = conditions.map(c => `${c.field} = ?`).join(' AND ');
   const whereValues = conditions.map(c => c.value);
 
-  const sql = `DELETE FROM ${table} WHERE ${whereClauses.join(' AND ')}`;
+  const sql = `UPDATE ${table} SET is_active = FALSE WHERE ${whereClauses}`;
   const [result] = await connection.query(sql, whereValues);
 
   await connection.end();
@@ -57,9 +60,24 @@ const POST = async (table, data) => {
   return result;
 };
 
+const PUT = async (table, data, conditions = []) => {
+  const connection = await createConnection();
+  const fields = Object.keys(data);
+  const values = Object.values(data);
+  const setClause = fields.map(field => `${field} = ?`).join(', ');
+  const whereClauses = conditions.map(c => `${c.field} = ?`).join(' AND ');
+  const whereValues = conditions.map(c => c.value);
+  const sql = `UPDATE ${table} SET ${setClause} WHERE ${whereClauses}`;
+  const [result] = await connection.query(sql, [...values, ...whereValues]);
+  await connection.end();
+  return result;
+};
+
+
 
 module.exports = {
   GET,
   DELETE,
-  POST
+  POST,
+  PUT
 };
