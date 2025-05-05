@@ -1,0 +1,72 @@
+import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { fetchData } from './fetchData';
+import { CurrentUser } from './App';
+import '../style/LogIn.css';
+
+function LogIn() {
+    const { register, handleSubmit, reset } = useForm();
+    const { setCurrentUser } = useContext(CurrentUser);
+    const [responsText, setResponstText] = useState("Fill the form and click the login button");
+    const navigate = useNavigate();
+
+    const onSubmit = async (data) => {
+        const userDetails = {
+            name: data.username,
+            password: data.password,
+        };
+        await checkIfExsist(userDetails);
+        reset();
+    };
+
+    async function checkIfExsist(userDetails) {
+        const username = userDetails.name;
+        const password = userDetails.password;
+        await fetchData({
+            type: "users",
+            params: { username },
+            onSuccess: (user) => {
+                if (user.length > 0 && user[0].website === password) {
+                    navigate(`/users/${user[0].id}/home`);
+                    setCurrentUser(user[0]);
+                    localStorage.setItem("currentUser", JSON.stringify(user[0]));
+                } else {
+                    setResponstText('Incorrect username or password');
+                }
+            },
+            onError: () => {
+                setResponstText('ERROR');
+            },
+        });
+        setTimeout(() => setResponstText("Fill the form and click the login button"), 2000);
+    }
+
+    return (
+        <>
+            <div className="back-ground-img">
+                <h2>Login</h2>
+                <div className="entryContainer">
+                    <form onSubmit={handleSubmit(onSubmit)} className="entryForm">
+                        <input
+                            type="text"
+                            placeholder="username"
+                            required
+                            {...register("username", { required: true })}
+                        />
+                        <input
+                            type="password"
+                            placeholder="password"
+                            required
+                            {...register("password", { required: true })}
+                        />
+                        <button type="submit">log in</button>
+                        <h4>{responsText}</h4>
+                    </form>
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default LogIn;
