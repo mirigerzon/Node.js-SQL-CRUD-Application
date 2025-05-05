@@ -5,7 +5,7 @@ const PORT = 3001;
 const app = express();
 app.use(cors());
 app.use(express.json());
-require('dotenv').config({ path: './.env' });
+require('dotenv').config({ path: '../.env' });
 
 async function main() {
     const db = await mysql.createConnection({

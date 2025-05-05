@@ -1,23 +1,21 @@
 const express = require('express');
 const cors = require('cors');
-const routes = require('./routes');
 
-const PORT = 3001;
+const getRoutes = require('./routes/get');
+const postRoutes = require('./routes/post');
+const putRoutes = require('./routes/put');
+const deleteRoutes = require('./routes/delete');
+
 const app = express();
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/', routes);
-app.use('/users', routes);
-app.use('/users/:userId', routes);
-app.use('/users/:userId/todos', routes);
-app.use('/posts', routes);
-app.use('/users/:userId/posts', routes);
-app.use('/posts/:postId', routes);
-app.use('/posts/:postId/comments', routes);
-app.use('/posts/:postId/comments/:commentId', routes);
-
+app.use('/', getRoutes);
+app.use('/', postRoutes);
+app.use('/', putRoutes);
+app.use('/', deleteRoutes);
 
 app.listen(PORT, () => {
   console.log(`The server runs on port: ${PORT}`);

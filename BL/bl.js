@@ -1,26 +1,24 @@
 // BL/dataService.js
 const dal = require('../DAL/dal.js');
 
-const getAll = async (type) => {
-  return await dal.getAll(type);
+const getItemByConditions = async (table, conditions = []) => {
+  console.log(`i am in bl.getItemByConditions func with table: ${table}`); 
+  const res = await dal.GET(table, conditions);
+  return res[0] || null;
 };
 
-// לקבל מערך להשוואת נתונים עם מי ששלח אותם לעבור ולבדוק שכולם שולחים את הנתונים
-const getItemById = async (type, id, fieldToCheck = null, volueToCheck = null) => {
-  const res = await dal.getItemsById(type, 'id', id);
-  if (fieldToCheck) {
-    if (res.fieldToCheck !== volueToCheck)
-      return null;
-  }
-  return res;
+const deleteItem = async (table, conditions = []) => {
+  return await dal.DELETE(table, conditions);
 };
-const getItemsByItemId = async (type, typeToCompare, id) => {
-  return await dal.getItemsById(type, typeToCompare, id)
+
+const createItem = async (table, data) => {
+  return await dal.insert(table, data);
 };
+
 
 
 module.exports = {
-  getAll,
-  getItemById,
-  getItemsByItemId
+  getItemByConditions,
+  deleteItem,
+  createItem
 };
