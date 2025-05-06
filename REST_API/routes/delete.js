@@ -28,19 +28,4 @@ router.delete('/:parentTable/:parentId/:childTable/:childId', async (req, res) =
   }
 });
 
-router.delete('/:parentTable/:parentId/:childTable/:childId/:grandChildTable/:grandChildId', async (req, res) => {
-  const parentField = `${req.params.parentTable.slice(0, -1)}_id`;
-  const childField = `${req.params.childTable.slice(0, -1)}_id`;
-  try {
-    const result = await dataService.deleteItem(req.params.grandChildTable, [
-      { field: 'id', value: req.params.grandChildId },
-      { field: childField, value: req.params.childId }
-    ]);
-    res.json({ message: 'Deleted successfully', result });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: `ERROR deleting from ${req.params.grandChildTable}` });
-  }
-});
-
 module.exports = router;

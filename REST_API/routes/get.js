@@ -3,12 +3,23 @@ const router = express.Router();
 const dataService = require('../../BL/bl');
 
 router.get('/:table', async (req, res) => {
-  console.log(req.params.table);
+  const table = req.params.table;
+  const query = req.query;
+
   try {
-    const data = await dataService.getItemByConditions(req.params.table);
+    let conditions = [];
+    if (Object.keys(query).length > 0) {
+      conditions = Object.entries(query).map(([key, value]) => ({
+        field: key,
+        value: isNaN(value) ? value : Number(value)
+      }));
+    }
+
+    const data = await dataService.getItemByConditions(table, conditions.length ? conditions : undefined);
     res.json(data);
-  } catch {
-    res.status(500).json({ error: `ERROR requesting ${req.params.table}` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: `ERROR requesting ${table}` });
   }
 });
 
@@ -45,33 +56,6 @@ router.get('/:parentTable/:parentId/:childTable/:childId', async (req, res) => {
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: `ERROR requesting ${req.params.childTable} by conditions` });
-  }
-});
-
-router.get('/:parentTable/:parentId/:childTable/:childId/:grandChildTable', async (req, res) => {
-  const parentTableName = req.params.parentTable.slice(0, -1);
-  const childTableName = req.params.childTable.slice(0, -1);
-  try {
-    const data = await dataService.getItemByConditions(req.params.grandChildTable, [
-      { field: `${childTableName}_id`, value: req.params.childId }]);
-    res.json(data);
-  }
-  catch {
-    res.status(500).json({ error: 'ERROR requesting comments' });
-  }
-});
-
-router.get('/:parentTable/:parentId/:childTable/:childId/:grandChildTable/:grandChildId', async (req, res) => {
-  const parentTableName = req.params.parentTable.slice(0, -1);
-  const childTableName = req.params.childTable.slice(0, -1);
-  try {
-    const data = await dataService.getItemByConditions(req.params.grandChildTable, [
-      { field: 'id', value: req.params.grandChildId },
-      { field: `${childTableName}_id`, value: req.params.childId }]);
-    res.json(data);
-  }
-  catch {
-    res.status(500).json({ error: 'ERROR requesting comments' });
   }
 });
 
