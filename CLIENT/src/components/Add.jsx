@@ -9,7 +9,7 @@ function Add({ type, setIsChange, inputs, defaultValue, name = "Add" }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             ...defaultValue,
-            userId: currentUser.id
+            user_id: currentUser.id,
         },
     });
 

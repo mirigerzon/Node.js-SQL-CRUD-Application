@@ -188,3 +188,8 @@ input {
   margin-top: 15vh;
   font-size: 1.75vw;
 }
+
+button.action-btn.edit-btn{
+  color: black;
+  background-color: #f9f9f9;
+}

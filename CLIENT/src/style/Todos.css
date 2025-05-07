@@ -33,12 +33,16 @@
 }
 
 .action-btn {
-    background: none;
+    background-color: #f9f9f9;
     border: none;
     cursor: pointer;
     font-size: 18px;
 }
 
-.toggle-btn i.fa-times-circle {
-    color: gray;
+input[type="checkbox"] {
+    accent-color: #3390ad;
+}
+
+button:hover{
+    border: none;
 }

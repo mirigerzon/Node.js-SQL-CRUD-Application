@@ -1,10 +1,12 @@
 export const fetchData = ({ type, params = {}, method = "GET", body = null, onSuccess, onError }) => {
     const query = method === "GET" ? `?${new URLSearchParams(params).toString()}` : "";
     const url = `http://localhost:3001/${type}${query}`;
+    const token = localStorage.getItem("accessToken");
     const options = {
         method,
         headers: {
             "Content-Type": "application/json",
+            ...(token && { Authorization: `Bearer ${token}` }),
         },
         ...(body && { body: JSON.stringify(body) }),
     };

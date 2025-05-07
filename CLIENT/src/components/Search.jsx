@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Search({setIsChange, options, data, setData }) {
+function Search({ setIsChange, options, data, setData }) {
     const [searchParams, setSearchParams] = useState({});
 
     const handleSearchChange = (e) => {
@@ -24,12 +24,13 @@ function Search({setIsChange, options, data, setData }) {
         }
         else {
             const type = searchParams.type.toLowerCase();
+            let searchValue = searchParams.value;
             if (type === "completed") {
-                searchParams.value = searchParams.value.toLowerCase() === 'true';
+                searchValue = searchValue.toLowerCase() === 'true' ? 1 : 0;
             }
             setData(data.filter((item) => {
-                let result = item[type];
-                return result.toLowerCase().includes(searchParams.value.toLowerCase())
+                const result = item[type];
+                return String(result).toLowerCase().includes(String(searchValue).toLowerCase());
             }));
             e.target.reset();
         }

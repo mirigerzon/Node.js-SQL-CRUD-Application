@@ -20,13 +20,26 @@ function Register() {
     });
     const navigate = useNavigate();
 
-    const onFirstSubmit = async (data) => {
+    const validateInitialForm = async (data) => {
         const userDetails = {
             name: data.username,
             password: data.password,
             verifyPassword: data.verifyPassword,
         };
-        await checkIfExsist(userDetails);
+        if (userDetails.password !== userDetails.verifyPassword) {
+            setResponstText("Password and verifyPassword are not the same");
+            return;
+        }
+        if (userDetails.password.length < 6) {
+            setResponstText("Password must contain at least 6 characters.");
+            return;
+        }
+        setUserData((prevData) => ({
+            ...prevData,
+            username: userDetails.name,
+            password: userDetails.password
+        }));
+        setRegisterIsCompleted(1);
         resetFirstForm();
     };
 
@@ -34,10 +47,8 @@ function Register() {
         const updatedUserData = {
             ...userData,
             name: data.name,
-            username: data.username,
             email: data.email,
-            phone: data.phone,
-            password: data.password
+            phone: data.phone
         };
         setUserData(updatedUserData);
         await signUpFunc(updatedUserData);
@@ -62,41 +73,6 @@ function Register() {
         });
     }
 
-    async function checkIfExsist(userDetails) {
-        const username = userDetails.name;
-        const password = userDetails.password;
-        fetchData({
-            type: "login",
-            method: "POST",
-            params: { username },
-            onSuccess: (user) => {
-                if (user.length > 0) {
-                    setResponstText("The user already exists");
-                } else {
-                    if (password === userDetails.verifyPassword) {
-                        if (password.length < 6) {
-                            setResponstText("Password must contain at least 6 characters.");
-                        } else {
-                            setUserData((prevData) => ({
-                                ...prevData,
-                                username: username,
-                                password: password
-                            }));
-                            setRegisterIsCompleted(1);
-                        }
-                    } else {
-                        setResponstText("Password and verifyPassword are not the same");
-                    }
-                }
-            },
-            onError: () => {
-                setResponstText("ERROR");
-            },
-        });
-        setTimeout(() => setResponstText("Fill the form and click the sign up button"), 5000);
-    }
-
-
     return (
         <>
             <div className="back-ground-img">
@@ -104,7 +80,7 @@ function Register() {
                     <div>
                         <h2>Sign Up</h2>
                         <div className="entryContainer">
-                            <form onSubmit={handleFirstSubmit(onFirstSubmit)} className="entryForm">
+                            <form onSubmit={handleFirstSubmit(validateInitialForm)} className="entryForm">
                                 <input
                                     type="text"
                                     placeholder="username"

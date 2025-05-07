@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { MdDelete } from "react-icons/md";
 import { fetchData } from "./fetchData";
 function Delete({ type, itemId, setIsChange, deleteChildren = null, typeOfChild = null }) {
     const [process, setProcess] = useState(0);
-    
+
     async function deleteFunc(e) {
         if (deleteChildren) {
             if (confirm(`Deleting this ${type} will delete all of his ${typeOfChild}. Are you sure?`)) {
@@ -43,7 +44,7 @@ function Delete({ type, itemId, setIsChange, deleteChildren = null, typeOfChild 
     return (
         <>
             <button onClick={(e) => deleteFunc(e)} className="action-btn delete-btn">
-                <i className="fa fa-trash"></i>
+                <MdDelete style={{ color: 'black', fontSize: '24px' }} />
             </button>
             {process == 1 && <h3>in process...</h3>}
         </>

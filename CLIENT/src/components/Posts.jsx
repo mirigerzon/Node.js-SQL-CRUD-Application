@@ -58,7 +58,7 @@ function Posts() {
 
     function displayDetailsFunc(post) {
         const details = <div className='details'>
-            <h2 className='more-details-h2'>Written by: {post.userId}</h2><br />
+            <h2 className='more-details-h2'>Written by: {post.user_id}</h2><br />
             <h3 className='more-details-h3'>title: {post.title}</h3><br />
             <h4>{post.body}</h4><br />
             <button onClick={() => setDisplayDetails(null)}>Close</button>
@@ -72,7 +72,7 @@ function Posts() {
                 <button onClick={() => setIsAllPosts((prev) => !prev)}>{isAllPost == 0 ? "All Posts" : "My Posts"}</button>
                 <Sort type={"posts"} setIsChange={setIsChange} options={["id", "title"]} userData={userPosts} setUserData={setUserPosts} />
                 <Search type={"posts"} setIsChange={setIsChange} options={["All", "ID", "Title"]} data={userPosts} setData={setUserPosts} />
-                <Add type={"posts"} setIsChange={setIsChange} inputs={["title", "body"]} setData={setUserPosts} defaultValue={{ userId: currentUser.id }} />
+                <Add type={"posts"} setIsChange={setIsChange} inputs={["title", "body"]} setData={setUserPosts} defaultValue={{ user_id: currentUser.id }} />
             </div>
             <div className="container">
                 <h1>Posts</h1>
@@ -88,12 +88,11 @@ function Posts() {
                                     <h4>{post.title}</h4>
                                     <button onClick={() => displayDetailsFunc(post)}>More Details</button>
                                     <button onClick={() => navigate(`/users/${currentUser.id}/posts/${post.id}/comments`)}>Comments</button>
-                                    <Add type={"comments"} setIsChange={null} inputs={["name", "body"]} setData={setUserPosts} defaultValue={{ postId: post.id, email: currentUser.email }} name="Add Comment" />
+                                    <Add type={"comments"} setIsChange={null} inputs={["name", "body"]} setData={setUserPosts} defaultValue={{ post_id: post.id, email: currentUser.email }} name="Add Comment" />
                                 </div>
                                 <div className='post-actions'>
-                                    {post.userId == currentUser.id && <Update type={"posts"} itemId={post.id} setIsChange={setIsChange} inputs={["title", "body"]} />}
-                                    {post.userId == currentUser.id && <Delete type={"posts"} itemId={post.id} setIsChange={setIsChange} deleteChildren={deleteItems} typeOfChild={"comments"} />}
-
+                                    {post.user_id == currentUser.id && <Update type={"posts"} itemId={post.id} setIsChange={setIsChange} inputs={["title", "body"]} />}
+                                    {post.user_id == currentUser.id && <Delete type={"posts"} itemId={post.id} setIsChange={setIsChange}/>}
                                 </div>
                             </div>
                         ))}

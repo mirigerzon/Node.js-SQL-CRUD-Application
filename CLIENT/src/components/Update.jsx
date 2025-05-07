@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { fetchData } from "./fetchData";
+import { FaEdit } from "react-icons/fa"
 function Update({ type, itemId, setIsChange, inputs }) {
     const [screen, setScreen] = useState(0);
     const [formData, setFormData] = useState({});
@@ -20,7 +21,7 @@ function Update({ type, itemId, setIsChange, inputs }) {
         try {
             await fetchData({
                 type: `${type}/${itemId}`,
-                method: "PATCH",
+                method: "PUT",
                 body: formData,
                 onSuccess: (result) => {
                     console.log("Update successful:", result);
@@ -44,7 +45,7 @@ function Update({ type, itemId, setIsChange, inputs }) {
         <>
             {screen == 0 &&
                 <button onClick={(e) => setScreen(1)} className="action-btn edit-btn">
-                    <i className="fa fa-edit"></i>
+                    <FaEdit style={{ color: 'black', fontSize: '20px' }} />
                 </button>}
             {screen == 1 && <div>
                 <form onSubmit={updateFunc}>

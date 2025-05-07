@@ -27,11 +27,12 @@ function LogIn() {
             type: "login",
             method: "POST",
             body: { username, password },
-            onSuccess: (user) => {
-                if (user && user.id) {
-                    navigate(`/users/${user.id}/home`);
-                    setCurrentUser(user);
-                    localStorage.setItem("currentUser", JSON.stringify(user));
+            onSuccess: (res) => {
+                if (res && res.token) {
+                    localStorage.setItem("token", res.token); // שומר את הטוקן
+                    localStorage.setItem("currentUser", JSON.stringify(res.user));
+                    setCurrentUser(res.user);
+                    navigate(`/users/${res.user.id}/home`);
                 } else {
                     setResponstText('Incorrect username or password');
                 }
