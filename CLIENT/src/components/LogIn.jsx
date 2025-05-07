@@ -29,8 +29,9 @@ function LogIn() {
             body: { username, password },
             onSuccess: (res) => {
                 if (res && res.token) {
-                    localStorage.setItem("token", res.token); // שומר את הטוקן
+                    localStorage.setItem("accessToken", res.token);
                     localStorage.setItem("currentUser", JSON.stringify(res.user));
+                    setResponstText("Login successful");
                     setCurrentUser(res.user);
                     navigate(`/users/${res.user.id}/home`);
                 } else {

@@ -29,7 +29,7 @@ function Posts() {
         }
         fetchData({
             type: "posts",
-            params: { user_id: currentUser.id },
+            params: { user_id: 'null'},
             onSuccess: (data) => setUserPosts(data),
             onError: (err) => setError(`Failed to fetch posts: ${err}`),
         });
@@ -72,7 +72,7 @@ function Posts() {
                 <button onClick={() => setIsAllPosts((prev) => !prev)}>{isAllPost == 0 ? "All Posts" : "My Posts"}</button>
                 <Sort type={"posts"} setIsChange={setIsChange} options={["id", "title"]} userData={userPosts} setUserData={setUserPosts} />
                 <Search type={"posts"} setIsChange={setIsChange} options={["All", "ID", "Title"]} data={userPosts} setData={setUserPosts} />
-                <Add type={"posts"} setIsChange={setIsChange} inputs={["title", "body"]} setData={setUserPosts} defaultValue={{ user_id: currentUser.id }} />
+                <Add type={"posts"} setIsChange={setIsChange} inputs={["title", "body"]} setData={setUserPosts} defaultValue={{ user_id: 'null' }} />
             </div>
             <div className="container">
                 <h1>Posts</h1>

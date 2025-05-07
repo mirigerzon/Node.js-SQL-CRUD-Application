@@ -8,6 +8,7 @@ function Navigation({ setIsShowInfo }) {
     
     function logOutFunc() {
         localStorage.removeItem("currentUser");
+        localStorage.removeItem("accessToken");
         setCurrentUser(null);
         navigate('/home');
     }

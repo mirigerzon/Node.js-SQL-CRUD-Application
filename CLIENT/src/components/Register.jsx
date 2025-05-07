@@ -60,11 +60,13 @@ function Register() {
             type: "register",
             method: "POST",
             body: createdUserData,
-            onSuccess: (createdUser) => {
-                console.log("User registered successfully:", createdUser);
-                navigate(`/users/${createdUser.id}/home`);
-                setCurrentUser(createdUser);
-                localStorage.setItem("currentUser", JSON.stringify(createdUser));
+            onSuccess: ({ user, token }) => {
+                console.log("User registered successfully:", user);
+                navigate(`/users/${user.id}/home`);
+                setCurrentUser(user);
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                localStorage.setItem("accessToken", token);
+                setResponstText("Registration successful! Redirecting to home page...");
             },
             onError: (errorMessage) => {
                 console.error("Failed to register user:", errorMessage);

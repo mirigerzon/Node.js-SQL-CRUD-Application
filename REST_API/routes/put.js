@@ -4,9 +4,10 @@ const dataService = require('../../BL/bl');
 
 router.put('/:table/:itemId', async (req, res) => {
     try {
+        const body = enrichBodyWithUserId(req);
         const result = await dataService.updateItem(
             req.params.table,
-            req.body,
+            body,
             [{ field: 'id', value: req.params.itemId }]
         );
         res.json(result);
@@ -19,9 +20,15 @@ router.put('/:table/:itemId', async (req, res) => {
 router.put('/:parentTable/:parentId/:childTable/:childId', async (req, res) => {
     const parentField = `${req.params.parentTable.slice(0, -1)}_id`;
     try {
+        const baseData = enrichBodyWithUserId(req);
+        const body = {
+            ...baseData,
+            [parentField]: req.params.parentId
+        };
+
         const result = await dataService.updateItem(
             req.params.childTable,
-            req.body,
+            body,
             [
                 { field: parentField, value: req.params.parentId },
                 { field: 'id', value: req.params.childId }
@@ -34,5 +41,12 @@ router.put('/:parentTable/:parentId/:childTable/:childId', async (req, res) => {
     }
 });
 
-module.exports = router;
+const enrichBodyWithUserId = (req) => {
+    const body = { ...req.body };
+    if (body.user_id === 'null') {
+        body.user_id = req.user?.id;
+    }
+    return body;
+};
 
+module.exports = router;
