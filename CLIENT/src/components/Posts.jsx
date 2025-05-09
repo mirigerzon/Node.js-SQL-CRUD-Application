@@ -13,7 +13,7 @@ import '../style/Posts.css';
 function Posts() {
     const [userPosts, setUserPosts] = useState([]);
     const [allPosts, setAllPosts] = useState([]);
-    const [isAllPost, setIsAllPosts] = useState(0);
+    const [isAllPost, setIsAllPosts] = useState(1);
     const [displayData, setDisplayData] = useState([]);
     const [error, setError] = useState(null);
     const [isChange, setIsChange] = useState(0);
