@@ -4,18 +4,6 @@ const dataService = require('../../BL/bl');
 
 router.get('/:table', async (req, res) => {
   const table = req.params.table;
-  // const query = req.query;
-  // if (query.user_id === 'null') {
-  //   query.user_id = req.user?.id;
-  // }
-  // try {
-  //   let conditions = [];
-  //   if (Object.keys(query).length > 0) {
-  //     conditions = Object.entries(query).map(([key, value]) => ({
-  //       field: key,
-  //       value: isNaN(value) ? value : Number(value)
-  //     }));
-  //   }
   try{
     const conditions = createConditions(req);
     const data = await dataService.getItemByConditions(table, conditions.length ? conditions : undefined);
@@ -28,18 +16,6 @@ router.get('/:table', async (req, res) => {
 
 router.get('/:table/:itemId', async (req, res) => {
   const tableName = req.params.table.slice(0, -1);
-  // const query = req.query;
-  // if (query.user_id === 'null') {
-  //   query.user_id = req.user?.id;
-  // }
-  // try {
-  //   let conditions = [];
-  //   if (Object.keys(query).length > 0) {
-  //     conditions = Object.entries(query).map(([key, value]) => ({
-  //       field: key,
-  //       value: isNaN(value) ? value : Number(value)
-  //     }));
-  //   }
   try {
     const conditions = createConditions(req);
     conditions.push({ field: 'id', value: req.params.itemId });
@@ -64,19 +40,6 @@ router.get('/:parentTable/:parentId/:childTable', async (req, res) => {
     res.status(500).json({ error: `ERROR requesting ${req.params.childTable} by ${parentName} id` });
   }
 });
-
-// router.get('/:parentTable/:parentId/:childTable/:childId', async (req, res) => {
-//   try {
-//     const conditions = [
-//       { field: `${req.params.parentTable.slice(0, -1)}_id`, value: req.params.parentId },
-//       { field: 'id', value: req.params.childId }
-//     ];
-//     const data = await dataService.getItemByConditions(req.params.childTable, conditions);
-//     res.json(data);
-//   } catch (err) {
-//     res.status(500).json({ error: `ERROR requesting ${req.params.childTable} by conditions` });
-//   }
-// });
 
 const createConditions = (req) => {
   const query = req.query;

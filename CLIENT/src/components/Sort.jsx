@@ -16,8 +16,8 @@ function Sort({ type, userData, setUserData }) {
                 return Math.random() - 0.5;
             }
             else if (key === "completed") {
-                valueA = a.completed === true ? 0 : 1;
-                valueB = b.completed === true ? 0 : 1;
+                valueA = a.completed ? 0 : 1;
+                valueB = b.completed ? 0 : 1;
             }
             if (valueA < valueB) return -1;
             if (valueA > valueB) return 1;

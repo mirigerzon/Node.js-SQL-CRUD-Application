@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from './fetchData';
 import { CurrentUser } from './App';
+import Cookies from 'js-cookie';
 import '../style/Register.css';
 
 function Register() {
@@ -65,7 +66,12 @@ function Register() {
                 navigate(`/users/${user.id}/home`);
                 setCurrentUser(user);
                 localStorage.setItem("currentUser", JSON.stringify(user));
-                localStorage.setItem("accessToken", token);
+                // localStorage.setItem("accessToken", token);
+                Cookies.set('accessToken',token, {
+                    expires: 1, // ימים – כאן זה 1 יום
+                    secure: true, // רק ב-HTTPS
+                    sameSite: 'Strict', // או 'Lax', תלוי בצורך
+                });
                 setResponstText("Registration successful! Redirecting to home page...");
             },
             onError: (errorMessage) => {

@@ -9,8 +9,8 @@ router.post('/login', async (req, res) => {
   try {
     const user = await dataService.verifyLogin(username, password);
     if (!user) return res.status(401).json({ error: 'Invalid username or password' });
-
-    const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '2h' });
+    const ip = req.ip;
+    const token = jwt.sign({ id: user.id, username: user.username, ip }, SECRET_KEY, { expiresIn: '2h' });
     res.json({ user, token });
   } catch (err) {
     console.error(err);
@@ -21,7 +21,8 @@ router.post('/login', async (req, res) => {
 router.post('/register', async (req, res) => {
   try {
     const user = await dataService.registerNewUser(req.body);
-    const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '2h' });
+    const ip = req.ip;
+    const token = jwt.sign({ id: user.id, username: user.username,ip }, SECRET_KEY, { expiresIn: '2h' });
     res.status(201).json({ user, token });
   } catch (err) {
     console.error(err);

@@ -15,6 +15,9 @@ function verifyToken(req, res, next) {
     if (err) {
       return res.status(403).json({ error: 'Invalid token' });
     }
+    if (decoded.ip !== req.ip) {
+      return res.status(403).json({ error: 'Token IP mismatch' });
+    }
     req.user = decoded;
     next();
   });

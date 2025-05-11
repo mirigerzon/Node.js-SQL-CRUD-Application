@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { fetchData } from './fetchData';
 import { CurrentUser } from './App';
 import '../style/LogIn.css';
+import Cookies from 'js-cookie';
+
 
 function LogIn() {
     const { register, handleSubmit, reset } = useForm();
@@ -29,7 +31,12 @@ function LogIn() {
             body: { username, password },
             onSuccess: (res) => {
                 if (res && res.token) {
-                    localStorage.setItem("accessToken", res.token);
+                    // localStorage.setItem("accessToken", res.token);
+                    Cookies.set('accessToken', res.token, {
+                        expires: 1, 
+                        secure: true, 
+                        sameSite: 'Strict',
+                      });
                     localStorage.setItem("currentUser", JSON.stringify(res.user));
                     setResponstText("Login successful");
                     setCurrentUser(res.user);
