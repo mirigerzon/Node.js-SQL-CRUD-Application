@@ -9,7 +9,6 @@ function Add({ type, setIsChange, inputs, defaultValue, name = "Add" }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             ...defaultValue,
-            user_id: 'null',
         },
     });
 
