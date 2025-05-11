@@ -71,7 +71,7 @@ function Posts() {
             <div className='control'>
                 <button onClick={() => setIsAllPosts((prev) => !prev)}>{isAllPost == 0 ? "All Posts" : "My Posts"}</button>
                 <Sort type={"posts"} setIsChange={setIsChange} options={["id", "title"]} userData={displayData} setUserData={setDisplayData} />
-                <Search type={"posts"} setIsChange={setIsChange} options={["All", "ID", "Title"]} data={displayData} setData={setDisplayData} />
+                <Search type={"posts"} setIsChange={setIsChange} options={[ "ID", "Title"]} data={displayData} setData={setDisplayData} />
                 <Add type={"posts"} setIsChange={setIsChange} inputs={["title", "body"]} setData={setUserPosts} defaultValue={{ user_id: 'null' }} />
             </div>
             <div className="container">

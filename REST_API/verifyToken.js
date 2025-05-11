@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = process.env.SECRET_KEY;
+const ACCESS_SECRET = process.env.ACCESS_SECRET;
 
 function verifyToken(req, res, next) {
-  const openPaths = ['/login', '/register'];
+  const openPaths = ['/login', '/register','/logout','/refresh'];
   if (openPaths.includes(req.path)) {
     return next();
   }
@@ -11,9 +11,9 @@ function verifyToken(req, res, next) {
   if (!token) {
     return res.status(401).json({ error: 'No token provided' });
   }
-  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+  jwt.verify(token, ACCESS_SECRET, (err, decoded) => {
     if (err) {
-      return res.status(403).json({ error: 'Invalid token' });
+      return res.status(401).json({ error: 'Invalid token' });
     }
     if (decoded.ip !== req.ip) {
       return res.status(403).json({ error: 'Token IP mismatch' });

@@ -62,7 +62,7 @@ function Todos() {
         <>
             <div className='control'>
                 <Sort type={"todos"} options={["id", "title", "completed"]} userData={userTodos} setUserData={setUserTodos} />
-                <Search type={"todos"} setIsChange={setIsChange} options={["All", "ID", "Title", "Completed"]} data={userTodos} setData={setUserTodos} />
+                <Search type={"todos"} setIsChange={setIsChange} options={[ "ID", "Title", "Completed"]} data={userTodos} setData={setUserTodos} />
                 <Add type={"todos"} setIsChange={setIsChange} inputs={["title"]} defaultValue={{ user_id: 'null', completed: false }} />
             </div>
             <div className='container'>
