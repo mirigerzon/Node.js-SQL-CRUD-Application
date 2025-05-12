@@ -3,7 +3,6 @@ const dal = require('../DAL/dal.js');
 const bcrypt = require('bcrypt');
 
 const getItemByConditions = async (table, conditions = []) => {
-  console.log(`i am in bl.getItemByConditions func with table: ${table}`);
   const res = await dal.GET(table, conditions);
   return res || null;
 };

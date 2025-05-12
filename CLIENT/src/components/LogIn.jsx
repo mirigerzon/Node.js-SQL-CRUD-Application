@@ -31,7 +31,6 @@ function LogIn() {
             body: { username, password },
             onSuccess: (res) => {
                 if (res && res.token) {
-                    // localStorage.setItem("accessToken", res.token);
                     Cookies.set('accessToken', res.token, {
                         expires: 1, 
                         secure: true, 

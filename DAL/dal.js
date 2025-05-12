@@ -1,6 +1,4 @@
 // DAL/db.js
-const { log } = require('console');
-const { text } = require('express');
 const mysql = require('mysql2/promise');
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
@@ -16,7 +14,6 @@ const createConnection = async () => {
 };
 
 const GET = async (table, conditions = []) => {
-  console.log(`i am in dal.GET func with table: ${table}`);
   const connection = await createConnection();
   let query = `SELECT * FROM ${table}`;
   query+= ' WHERE is_active = 1';

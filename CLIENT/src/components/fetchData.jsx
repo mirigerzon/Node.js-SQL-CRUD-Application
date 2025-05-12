@@ -22,12 +22,14 @@ export const fetchData = ({ type, params = {}, method = "GET", body = null, onSu
                     credentials: 'include',
                 })
                     .then(refreshRes => {
-                        if (!refreshRes.ok) throw new Error('Session expired. Please login again.');
+                        if (!refreshRes.ok) {
+                            throw new Error('Session expired. Please login again.');
+                        }
                         return refreshRes.json();
                     })
                     .then(data => {
-                        Cookies.set('accessToken', data.token); 
-                        return fetch(url, options(data.token)); 
+                        Cookies.set('accessToken', data.token);
+                        return fetch(url, options(data.token));
                     });
             }
             return response;

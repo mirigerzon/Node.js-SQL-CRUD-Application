@@ -1,29 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { CurrentUser } from './App';
-import { fetchData } from './fetchData';
-import Cookies from 'js-cookie';
-
+import { useLogOut } from './LogOut';
 function Navigation({ setIsShowInfo }) {
-    const { currentUser, setCurrentUser } = useContext(CurrentUser);
-    const navigate = useNavigate();
-
-    function logOutFunc() {
-        fetchData({
-            type: 'logout',
-            method: 'POST',
-            onSuccess: () => {
-                Cookies.remove('accessToken'); 
-                localStorage.removeItem("currentUser"); 
-                setCurrentUser(null); 
-                navigate('/home'); 
-            },
-            onError: (err) => {
-                console.error('Logout failed:', err);
-            }
-        });
-    }
-
+    const { currentUser } = useContext(CurrentUser);
+    const logOut = useLogOut();
     return (
         <>
             {currentUser ? <div>
@@ -36,7 +17,7 @@ function Navigation({ setIsShowInfo }) {
                     </div>
                     <h3 className='userName'> Hello {currentUser.name}</h3>
                     <div className="right">
-                        <ul onClick={logOutFunc}><a>LogOut</a></ul>
+                        <ul onClick={logOut}><a>LogOut</a></ul>
                     </div>
                 </nav>
             </div>

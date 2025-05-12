@@ -1,27 +1,11 @@
 import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { fetchData } from "./fetchData";
-function Delete({ type, itemId, setIsChange, deleteChildren = null, typeOfChild = null }) {
+function Delete({ type, itemId, setIsChange}) {
     const [process, setProcess] = useState(0);
 
     async function deleteFunc(e) {
-        if (deleteChildren) {
-            if (confirm(`Deleting this ${type} will delete all of his ${typeOfChild}. Are you sure?`)) {
-                setProcess(1);
-                deleteChildren({
-                    type: typeOfChild,
-                    params: { itemId },
-                    onDeleteSuccess: (result) => {
-                        console.log(`Additional success handling for ${typeOfChild} ID ${result.id}`);
-                    },
-                    onDeleteError: (err, result) => {
-                        console.error(`Error handling for ${typeOfChild} ID ${result.id}: ${err}`);
-                    },
-                });
-            }
-            else
-                return;
-        }
+        e.preventDefault();
         try {
             await fetchData({
                 type: `${type}/${itemId}`,
