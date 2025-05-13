@@ -8,8 +8,9 @@ import Add from './Add';
 import Sort from './Sort';
 import { fetchData } from './fetchData';
 import '../style/Todos.css';
-
+import { useLogOut } from './LogOut';
 function Todos() {
+    const logOut = useLogOut();
     const navigate = useNavigate();
     const [userTodos, setUserTodos] = useState([]);
     const [error, setError] = useState(null);
@@ -24,12 +25,13 @@ function Todos() {
         }
         fetchData({
             type: "todos",
-            params: { user_id: 'null'},
+            params: { user_id: 'null' },
             onSuccess: (data) => {
                 setUserTodos(data);
                 navigate(`/users/${currentUser.id}/todos`);
             },
             onError: (err) => setError(`Failed to fetch todos: ${err}`),
+            logOut,
         });
     }, [currentUser.id, isChange]);
 
@@ -52,6 +54,7 @@ function Todos() {
                 onError: (error) => {
                     console.log("Update was unsuccessful:", error);
                 },
+                logOut,
             });
         } catch (error) {
             console.log("Unexpected error:", error);
@@ -62,7 +65,7 @@ function Todos() {
         <>
             <div className='control'>
                 <Sort type={"todos"} options={["id", "title", "completed"]} userData={userTodos} setUserData={setUserTodos} />
-                <Search type={"todos"} setIsChange={setIsChange} options={[ "ID", "Title", "Completed"]} data={userTodos} setData={setUserTodos} />
+                <Search type={"todos"} setIsChange={setIsChange} options={["ID", "Title", "Completed"]} data={userTodos} setData={setUserTodos} />
                 <Add type={"todos"} setIsChange={setIsChange} inputs={["title"]} defaultValue={{ user_id: 'null', completed: false }} />
             </div>
             <div className='container'>

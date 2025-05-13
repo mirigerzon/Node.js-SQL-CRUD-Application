@@ -9,8 +9,10 @@ import Add from './Add';
 import Delete from './Delete';
 import Update from './Update';
 import '../style/Posts.css';
+import { useLogOut } from './LogOut';
 
 function Posts() {
+    const logOut = useLogOut();
     const [userPosts, setUserPosts] = useState([]);
     const [allPosts, setAllPosts] = useState([]);
     const [isAllPost, setIsAllPosts] = useState(1);
@@ -29,9 +31,10 @@ function Posts() {
         }
         fetchData({
             type: "posts",
-            params: { user_id: 'null'},
+            params: { user_id: 'null' },
             onSuccess: (data) => setUserPosts(data),
             onError: (err) => setError(`Failed to fetch posts: ${err}`),
+            logOut,
         });
     }, [currentUser.id, isChange]);
 
@@ -45,6 +48,7 @@ function Posts() {
             type: "posts",
             onSuccess: (data) => setAllPosts(data),
             onError: (err) => setError(`Failed to fetch posts: ${err}`),
+            logOut,
         });
     }, [isChange]);
 
@@ -71,7 +75,7 @@ function Posts() {
             <div className='control'>
                 <button onClick={() => setIsAllPosts((prev) => !prev)}>{isAllPost == 0 ? "All Posts" : "My Posts"}</button>
                 <Sort type={"posts"} setIsChange={setIsChange} options={["id", "title"]} userData={displayData} setUserData={setDisplayData} />
-                <Search type={"posts"} setIsChange={setIsChange} options={[ "ID", "Title"]} data={displayData} setData={setDisplayData} />
+                <Search type={"posts"} setIsChange={setIsChange} options={["ID", "Title"]} data={displayData} setData={setDisplayData} />
                 <Add type={"posts"} setIsChange={setIsChange} inputs={["title", "body"]} setData={setUserPosts} defaultValue={{ user_id: 'null' }} />
             </div>
             <div className="container">
@@ -92,7 +96,7 @@ function Posts() {
                                 </div>
                                 <div className='post-actions'>
                                     {post.user_id == currentUser.id && <Update type={"posts"} itemId={post.id} setIsChange={setIsChange} inputs={["title", "body"]} />}
-                                    {post.user_id == currentUser.id && <Delete type={"posts"} itemId={post.id} setIsChange={setIsChange}/>}
+                                    {post.user_id == currentUser.id && <Delete type={"posts"} itemId={post.id} setIsChange={setIsChange} />}
                                 </div>
                             </div>
                         ))}

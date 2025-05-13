@@ -5,7 +5,7 @@ import { fetchData } from './fetchData';
 import { CurrentUser } from './App';
 import '../style/LogIn.css';
 import Cookies from 'js-cookie';
-
+import { useLogOut } from './LogOut';
 
 function LogIn() {
     const { register, handleSubmit, reset } = useForm();
@@ -32,10 +32,10 @@ function LogIn() {
             onSuccess: (res) => {
                 if (res && res.token) {
                     Cookies.set('accessToken', res.token, {
-                        expires: 1, 
-                        secure: true, 
+                        expires: 1,
+                        secure: true,
                         sameSite: 'Strict',
-                      });
+                    });
                     localStorage.setItem("currentUser", JSON.stringify(res.user));
                     setResponstText("Login successful");
                     setCurrentUser(res.user);

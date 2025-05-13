@@ -30,7 +30,6 @@ async function createTables(connection) {
             phone INT NOT NULL
         )
     `);
-
     //passwords
     await connection.query(
         `CREATE TABLE passwords (

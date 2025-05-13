@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dataService = require('../../BL/bl');
-const { writeLog } = require('../../log'); 
+const { writeLog } = require('../../../log'); 
 
 router.delete('/:table/:itemId', async (req, res) => {
   try {
@@ -36,7 +36,7 @@ router.delete('/:parentTable/:parentId/:childTable/:childId', async (req, res) =
 });
 
 const addUserIdConditions = (req, conditions = []) => {
-  if (req.body === undefined && req.body.user_id === 'null') {
+  if (req.body != undefined && req.body.user_id === 'null') {
     conditions.push({ field: 'user_id', value: req.user.id });
   }
   return conditions;

@@ -7,7 +7,6 @@ import { fetchData } from './fetchData';
 export function useLogOut() {
     const { setCurrentUser } = useContext(CurrentUser);
     const navigate = useNavigate();
-
     const logOut = () => {
         fetchData({
             type: 'logout',
@@ -23,6 +22,5 @@ export function useLogOut() {
             }
         });
     };
-
     return logOut;
 }

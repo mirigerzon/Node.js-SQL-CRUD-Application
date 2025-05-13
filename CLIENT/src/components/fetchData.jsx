@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-export const fetchData = ({ type, params = {}, method = "GET", body = null, onSuccess, onError }) => {
+export const fetchData = ({ type, params = {}, method = "GET", body = null, onSuccess, onError, logOut = null }) => {
     const query = method === "GET" ? `?${new URLSearchParams(params).toString()}` : "";
     const url = `http://localhost:3001/${type}${query}`;
     const token = Cookies.get('accessToken');
@@ -13,7 +13,6 @@ export const fetchData = ({ type, params = {}, method = "GET", body = null, onSu
         ...(body && { body: JSON.stringify(body) }),
     });
 
-
     fetch(url, options(token))
         .then(response => {
             if (response.status === 401) {
@@ -23,6 +22,7 @@ export const fetchData = ({ type, params = {}, method = "GET", body = null, onSu
                 })
                     .then(refreshRes => {
                         if (!refreshRes.ok) {
+                            logOut();
                             throw new Error('Session expired. Please login again.');
                         }
                         return refreshRes.json();

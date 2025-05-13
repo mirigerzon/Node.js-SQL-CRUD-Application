@@ -6,8 +6,10 @@ import Delete from "./Delete";
 import Update from "./Update";
 import Add from './Add';
 import '../style/Comments.css';
+import { useLogOut } from './LogOut';
 
 function Comments() {
+    const logOut = useLogOut();
     const [comments, setComments] = useState("");
     const { post_id } = useParams();
     const { currentUser } = useContext(CurrentUser);
@@ -30,6 +32,7 @@ function Comments() {
                         console.error(error);
                         setError("Failed to fetch comments");
                     },
+                    logOut,
                 });
             } catch (error) {
                 console.error("Unexpected error:", error);

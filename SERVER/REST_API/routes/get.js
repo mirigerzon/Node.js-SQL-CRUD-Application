@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dataService = require('../../BL/bl');
-const { writeLog } = require('../../log'); 
+const { writeLog } = require('../../../log'); 
 
 router.get('/:table', async (req, res) => {
   const table = req.params.table;

@@ -1,8 +1,7 @@
 import { useState } from "react";
-
 function Search({ setIsChange, options, data, setData }) {
   const [searchParams, setSearchParams] = useState({
-    type: "All", // ✅ ברירת מחדל תקינה
+    type: "All",
     value: ""
   });
 
@@ -16,19 +15,14 @@ function Search({ setIsChange, options, data, setData }) {
 
   function searchFunc(e) {
     e.preventDefault();
-
-    // ✅ אם חיפוש לפי All או שהשדה ריק – מחזיר את כל הנתונים
     if (searchParams.type === "All" || searchParams.value.trim() === "") {
       setIsChange(1);
       return;
     }
-
-    // ✅ בדיקות התאמה בין סוג לחיפוש
     if (searchParams.type === "ID" && !/^\d+$/.test(searchParams.value)) {
       alert("Please enter numbers only for ID");
       return;
     }
-
     if (
       searchParams.type === "Completed" &&
       searchParams.value !== "true" &&
@@ -38,7 +32,6 @@ function Search({ setIsChange, options, data, setData }) {
       return;
     }
 
-    // ✅ ביצוע הסינון
     const type = searchParams.type.toLowerCase();
     let searchValue = searchParams.value;
 
@@ -54,7 +47,6 @@ function Search({ setIsChange, options, data, setData }) {
     );
 
     e.target.reset();
-    // שומרים רק את ברירת המחדל כדי לא לאבד את הבחירה
     setSearchParams({ type: "All", value: "" });
   }
 
@@ -73,7 +65,7 @@ function Search({ setIsChange, options, data, setData }) {
           value={searchParams.type}
           onChange={handleSearchChange}
         >
-          <option value="All">All</option> {/* ✅ ברירת מחדל תקינה */}
+          <option value="All">All</option> 
           {options.map((option, index) => (
             <option key={index} value={option}>
               {option}

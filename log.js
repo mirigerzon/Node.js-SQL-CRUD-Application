@@ -5,8 +5,6 @@ function writeLog(message, type = 'info') {
     const logMessage = `[${timestamp}] [${type.toUpperCase()}] ${message}\n`;
     const logDir = path.join(__dirname, './logs');
     const logFile = path.join(logDir, 'server.log');
-    console.log('Saving log to:', logFile); // ✅ שורה לבדיקה
-
     if (!fs.existsSync(logDir)) {
         fs.mkdirSync(logDir, { recursive: true });
     }

@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const dataService = require('../../BL/bl');
 const jwt = require('jsonwebtoken');
-const { writeLog } = require('../../log'); // ✅ הוספתי ייבוא לוג
+const { writeLog } = require('../../../log'); 
+
 const ACCESS_SECRET = process.env.ACCESS_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_SECRET;
 
@@ -11,26 +12,24 @@ router.post('/login', async (req, res) => {
   try {
     const user = await dataService.verifyLogin(username, password);
     if (!user) {
-      writeLog(`Failed login attempt for username=${username}`, 'warn'); // ✅ הוספתי לוג כישלון התחברות
+      writeLog(`Failed login attempt for username=${username}`, 'warn');
       return res.status(401).json({ error: 'Invalid username or password' });
     }
     const ip = req.ip;
-    const accessToken = jwt.sign({ id: user.id, username: user.username, ip }, ACCESS_SECRET, { expiresIn: '15s' });
-    const refreshToken = jwt.sign({ id: user.id }, REFRESH_SECRET, { expiresIn: '10s' });
-
-    writeLog(`User logged in successfully: username=${username}, ip=${ip}`, 'info'); // ✅ הוספתי לוג התחברות
-
+    const accessToken = jwt.sign({ id: user.id, username: user.username, ip }, ACCESS_SECRET, { expiresIn: '15m' });
+    const refreshToken = jwt.sign({ id: user.id }, REFRESH_SECRET, { expiresIn: '1d' });
+    writeLog(`User logged in successfully: username=${username}, ip=${ip}`, 'info'); 
     res
       .cookie('refreshToken', refreshToken, {
         httpOnly: true,
         secure: true,
         sameSite: 'Strict',
-        maxAge: 7 * 24 * 60 * 60 * 1000
+        maxAge: 1 * 24 * 60 * 60 * 1000
       })
       .json({ user, token: accessToken });
   } catch (err) {
     console.error(err);
-    writeLog(`Login error for username=${req.body.username} - ${err.message}`, 'error'); // ✅ הוספתי לוג שגיאה
+    writeLog(`Login error for username=${req.body.username} - ${err.message}`, 'error'); 
     res.status(500).json({ error: 'Login error' });
   }
 });
@@ -47,7 +46,7 @@ router.post('/register', async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: 'Strict',
-        maxAge: 7 * 24 * 60 * 60 * 1000
+        maxAge: 1 * 24 * 60 * 60 * 1000
       })
       .status(201)
       .json({ user, token: accessToken });
@@ -70,7 +69,7 @@ router.post('/refresh', (req, res) => {
       return res.sendStatus(403);
     }
     const ip = req.ip;
-    const newAccessToken = jwt.sign({ id: decoded.id, ip }, ACCESS_SECRET, { expiresIn: '15s' });
+    const newAccessToken = jwt.sign({ id: decoded.id, ip }, ACCESS_SECRET, { expiresIn: '1d' });
     writeLog(`Access token refreshed for userId=${decoded.id}, ip=${ip}`, 'info');
     res.json({ token: newAccessToken });
   });

@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CurrentUser } from "./App";
 import { fetchData } from "./fetchData";
+import { useLogOut } from './LogOut';
 
 function Add({ type, setIsChange, inputs, defaultValue, name = "Add" }) {
+    const logOut = useLogOut();
     const { currentUser } = useContext(CurrentUser);
     const [isScreen, setIsScreen] = useState(0);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -28,6 +30,7 @@ function Add({ type, setIsChange, inputs, defaultValue, name = "Add" }) {
                 onError: (error) => {
                     console.log("add was unsuccessful", error);
                 },
+                logOut,
             });
         } catch (error) {
             console.log("Unexpected error:", error);

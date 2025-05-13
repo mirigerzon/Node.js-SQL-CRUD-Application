@@ -2,7 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { fetchData } from "./fetchData";
 import { FaEdit } from "react-icons/fa"
+import { useLogOut } from './LogOut';
+
 function Update({ type, itemId, setIsChange, inputs }) {
+    const logOut = useLogOut();
     const [screen, setScreen] = useState(0);
     const [formData, setFormData] = useState({});
 
@@ -30,6 +33,7 @@ function Update({ type, itemId, setIsChange, inputs }) {
                 onError: (error) => {
                     console.log("Update was unsuccessful:", error);
                 },
+                logOut,
             });
         } catch (error) {
             console.error("Unexpected error:", error);
