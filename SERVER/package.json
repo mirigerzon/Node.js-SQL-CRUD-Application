@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./SERVER/REST_API/server.js"
+    "dev": "nodemon ./REST_API/server.js"
   },
   "keywords": [],
   "author": "",

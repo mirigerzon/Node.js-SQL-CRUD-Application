@@ -283,3 +283,93 @@
 [2025-05-13T11:38:53.808Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":20}]
 [2025-05-13T11:38:53.812Z] [INFO] Fetched data from table=posts with conditions=[]
 [2025-05-13T11:39:12.578Z] [INFO] User logged out
+[2025-05-13T12:08:52.268Z] [INFO] User logged in successfully: username=leanne, ip=::1
+[2025-05-13T12:08:53.831Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:08:53.843Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:08:53.858Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:08:53.862Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:09:05.086Z] [INFO] Created new item in table=posts with data={"user_id":1,"title":"שלום ","body":"לכולם"}
+[2025-05-13T12:09:05.135Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:09:05.140Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:09:05.156Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:09:05.169Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:09:14.236Z] [INFO] Created new item in table=comments with data={"post_id":103,"email":"Sincere@april.biz","name":"להגיש בלה ","body":"בהל"}
+[2025-05-13T12:09:15.744Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:15.762Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:20.622Z] [INFO] Created new item in table=comments with data={"post_id":"103","email":"Sincere@april.biz","name":"בלה בלה","body":"כהח"}
+[2025-05-13T12:09:20.643Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:20.658Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:26.985Z] [INFO] Updated itemId=505 in table=comments with data={"name":"להגיש"}
+[2025-05-13T12:09:27.017Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:27.031Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:28.215Z] [INFO] Deleted itemId=505 from table=comments
+[2025-05-13T12:09:28.235Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:28.248Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:28.875Z] [INFO] Deleted itemId=506 from table=comments
+[2025-05-13T12:09:28.892Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:28.905Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":103}]
+[2025-05-13T12:09:29.747Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:09:29.752Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:09:29.770Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:09:29.775Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:09:36.691Z] [INFO] Deleted itemId=103 from table=posts
+[2025-05-13T12:09:36.732Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:09:36.734Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:09:36.746Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:09:36.753Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T12:09:43.307Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:09:43.319Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:12:10.818Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:12:10.838Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T12:12:11.671Z] [INFO] User logged out
+[2025-05-13T13:14:25.964Z] [INFO] User logged in successfully: username=leanne, ip=::1
+[2025-05-13T13:14:32.521Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:14:32.537Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:14:32.544Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:14:32.558Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:14:40.676Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:14:40.690Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:04.160Z] [INFO] Deleted itemId=3 from table=todos
+[2025-05-13T13:15:04.207Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:04.228Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:09.489Z] [INFO] Updated itemId=4 in table=todos with data={"title":"ברוך ה!"}
+[2025-05-13T13:15:09.538Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:09.558Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:11.496Z] [INFO] Updated itemId=4 in table=todos with data={"completed":false}
+[2025-05-13T13:15:11.537Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:11.565Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:12.126Z] [INFO] Updated itemId=4 in table=todos with data={"completed":true}
+[2025-05-13T13:15:12.166Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:12.190Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:23.117Z] [INFO] Created new item in table=todos with data={"user_id":1,"completed":false,"title":"שלום למורה..."}
+[2025-05-13T13:15:23.173Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:23.199Z] [INFO] Fetched data from table=todos with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:34.629Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:34.632Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:15:34.645Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:15:34.648Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:16:09.971Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:09.988Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:15.488Z] [INFO] Created new item in table=comments with data={"post_id":"2","email":"Sincere@april.biz","name":"שלום","body":" לכולם"}
+[2025-05-13T13:16:15.516Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:15.529Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:20.714Z] [INFO] Updated itemId=507 in table=comments with data={"name":"היי"}
+[2025-05-13T13:16:20.742Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:20.755Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:39.221Z] [INFO] Updated itemId=507 in table=comments with data={"name":""}
+[2025-05-13T13:16:39.247Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:39.260Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:41.799Z] [INFO] Deleted itemId=507 from table=comments
+[2025-05-13T13:16:41.818Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:41.830Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:16:44.263Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:16:44.265Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:16:44.280Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:16:44.282Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:17:23.025Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:17:23.022Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:17:23.046Z] [INFO] Fetched data from table=posts with conditions=[{"field":"user_id","value":1}]
+[2025-05-13T13:17:23.049Z] [INFO] Fetched data from table=posts with conditions=[]
+[2025-05-13T13:17:24.306Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:17:24.321Z] [INFO] Fetched data from table=comments with conditions=[{"field":"post_id","value":2}]
+[2025-05-13T13:17:27.557Z] [INFO] User logged out

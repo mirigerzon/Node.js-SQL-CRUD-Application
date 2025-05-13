@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const dataService = require('../../BL/bl');
 const jwt = require('jsonwebtoken');
-const { writeLog } = require('../../../log'); 
+const { writeLog } = require('../../log'); 
 
 const ACCESS_SECRET = process.env.ACCESS_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_SECRET;

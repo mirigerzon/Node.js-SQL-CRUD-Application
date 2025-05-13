@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dataService = require('../../BL/bl');
-const { writeLog } = require('../../../log'); 
+const { writeLog } = require('../../log'); 
 
 router.delete('/:table/:itemId', async (req, res) => {
   try {
